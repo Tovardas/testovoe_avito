@@ -1,0 +1,134 @@
+.ad-details-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.ad-details__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ad-details__nav-group {
+    display: flex;
+    gap: 10px;
+}
+
+.ad-details__nav-btn {
+    background-color: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #374151;
+    transition: all 0.2s;
+}
+
+.ad-details__nav-btn:hover {
+    background-color: #f3f4f6;
+    border-color: #9ca3af;
+    color: #111827;
+}
+
+
+.ad-details__grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 30px;
+}
+
+
+.ad-details__main {
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-details__title {
+    margin: 0 0 20px 0;
+    font-size: 28px;
+    color: #111;
+    line-height: 1.2;
+}
+
+.ad-details__description-block {
+    margin-top: 30px;
+}
+
+.ad-details__subtitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.ad-details__text {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    color: #333;
+    font-size: 16px;
+}
+
+
+.ad-details__sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.ad-details__card {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.ad-details__card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.ad-details__card p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+.ad-details__status {
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.ad-details__status--approved {
+    color: #2e7d32;
+}
+
+.ad-details__status--rejected {
+    color: #c62828;
+}
+
+.ad-details__status--pending {
+    color: #ef6c00;
+}
+
+.ad-details__status--draft {
+    color: #616161;
+}
+
+
+@media (max-width: 800px) {
+    .ad-details__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ad-details__sidebar {
+        order: -1;
+    }
+}

@@ -1,0 +1,37 @@
+.ad-characteristics {
+    margin-top: 30px;
+}
+
+.ad-characteristics__title {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.ad-characteristics__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ad-characteristics__key {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    color: #666;
+    width: 40%;
+    vertical-align: top;
+    font-size: 14px;
+}
+
+.ad-characteristics__value {
+    padding: 10px 0 10px 15px;
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+
+.ad-characteristics__table tr:last-child td {
+    border-bottom: none;
+}

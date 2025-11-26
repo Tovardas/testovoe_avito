@@ -3,18 +3,18 @@ const generateMockAds = (count) => {
   const statuses = ['pending', 'approved', 'rejected'];
   const priorities = ['normal', 'urgent'];
   const rejectionReasons = ['Запрещенный товар', 'Неверная категория', 'Некорректное описание', 'Проблемы с фото', 'Подозрение на мошенничество', 'Другое'];
-  
+
   const ads = [];
-  
+
   for (let i = 1; i <= count; i++) {
     const categoryId = Math.floor(Math.random() * categories.length);
     const statusId = Math.floor(Math.random() * statuses.length);
     const priorityId = Math.floor(Math.random() * priorities.length);
-    
-    
-    const daysAgo = Math.floor(Math.random() * 60); 
+
+    // Создаем объявления за разные периоды для тестирования фильтрации
+    const daysAgo = Math.floor(Math.random() * 60); // Объявления за последние 60 дней
     const createdAt = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
-    
+
     const ad = {
       id: i,
       title: `Объявление ${i}: ${categories[categoryId]} для продажи`,
@@ -27,9 +27,9 @@ const generateMockAds = (count) => {
       createdAt: createdAt.toISOString(),
       updatedAt: createdAt.toISOString(),
       images: [
-        `https:
-        `https:
-        `https:
+        `https://placehold.co/300x200/cccccc/969696?text=Image+${i}-1`,
+        `https://placehold.co/300x200/cccccc/969696?text=Image+${i}-2`,
+        `https://placehold.co/300x200/cccccc/969696?text=Image+${i}-3`
       ],
       seller: {
         id: Math.floor(Math.random() * 1000) + 1,
@@ -47,14 +47,14 @@ const generateMockAds = (count) => {
       },
       moderationHistory: []
     };
-    
-    
+
+    // Добавляем историю модерации с датами
     if (statuses[statusId] !== 'pending') {
       const moderatorId = Math.floor(Math.random() * 5) + 1;
       const moderatorName = `Модератор ${moderatorId}`;
-      
+      // Модерация происходит через 5-30 минут после создания
       const moderationTime = new Date(createdAt.getTime() + (5 + Math.floor(Math.random() * 25)) * 60 * 1000);
-      
+
       ad.moderationHistory.push({
         id: 1,
         moderatorId: moderatorId,
@@ -64,13 +64,13 @@ const generateMockAds = (count) => {
         comment: statuses[statusId] === 'rejected' ? 'Объявление не соответствует правилам платформы' : 'Объявление прошло модерацию успешно',
         timestamp: moderationTime.toISOString()
       });
-      
+
       ad.updatedAt = moderationTime.toISOString();
     }
-    
+
     ads.push(ad);
   }
-  
+
   return ads;
 };
 
@@ -94,13 +94,13 @@ const generateMockStats = () => {
     },
     categoriesChart: {}
   };
-  
+
   const categories = ['Электроника', 'Недвижимость', 'Транспорт', 'Работа', 'Услуги', 'Животные', 'Мода', 'Детское'];
-  
+
   for (let i = 6; i >= 0; i--) {
     const date = new Date();
     date.setDate(date.getDate() - i);
-    
+
     stats.activityChart.push({
       date: date.toISOString().split('T')[0],
       approved: Math.floor(Math.random() * 20) + 10,
@@ -108,11 +108,11 @@ const generateMockStats = () => {
       requestChanges: Math.floor(Math.random() * 5) + 1
     });
   }
-  
+
   categories.forEach(category => {
     stats.categoriesChart[category] = Math.floor(Math.random() * 100) + 20;
   });
-  
+
   return stats;
 };
 

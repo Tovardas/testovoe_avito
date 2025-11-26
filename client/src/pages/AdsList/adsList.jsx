@@ -8,7 +8,6 @@ import PaginationControls from '../../components/PaginationControls';
 import TotalCountDisplay from "../../components/TotalCountDisplay";
 import Loader from "../../components/Loader";
 
-
 import './AdsList.css';
 
 const Header = React.memo(() => (
@@ -30,7 +29,7 @@ const AdsList = () => {
     status: searchParams.getAll('status'),
   }), [searchParams]);
 
-  const { data, isLoading, isError, error } = useAds(filters);
+  const { data, isLoading, isFetching, isError, error } = useAds(filters);
 
   const handleFiltersChange = useCallback((newFilters) => {
     setSearchParams(prev => {
@@ -75,7 +74,8 @@ const AdsList = () => {
 
   const adsArray = data?.ads || [];
   const totalCount = data?.pagination?.totalItems || 0;
-  const isFirstLoading = isLoading && adsArray.length === 0;
+
+  const isFirstLoading = isLoading;
 
   return (
     <div className="ads-list-page">
@@ -90,21 +90,15 @@ const AdsList = () => {
       <TotalCountDisplay totalCount={totalCount} />
 
       <div className="ads-list__content-wrapper">
-        {}
         {isFirstLoading && <Loader />}
-
-        {}
         {!isFirstLoading && (
           <>
-            {}
-            {isLoading && (
+            {isFetching && (
               <div className="ads-list__overlay">
                 <Loader />
               </div>
             )}
-
-            {}
-            <div className={`ads-list__container ${isLoading ? 'ads-list__container--loading' : ''}`}>
+            <div className={`ads-list__container ${isFetching ? 'ads-list__container--loading' : ''}`}>
               <AdsContainer adsArray={adsArray} />
             </div>
           </>
@@ -117,9 +111,7 @@ const AdsList = () => {
         limit={filters.limit}
         onPageChange={handlePageChange}
         adsOnPageCount={adsArray.length}
-        
-        
-        disabled={isLoading}
+        disabled={isFetching}
       />
     </div>
   );
